@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Application</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/logo.png" width="30" height="30" alt="Bank Logo">
+            BankingApp
+        </a>
+    </nav>
+
+    <div class="container mt-4">
+        <div id="main-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Create Client</h4>
+                    <form id="create-client-form">
+                        <div class="form-group">
+                            <label for="client-name">Name</label>
+                            <input type="text" class="form-control" id="client-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client-balance">Initial Balance</label>
+                            <input type="number" class="form-control" id="client-balance" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h4>Deposit/Withdraw</h4>
+                    <form id="transaction-form">
+                        <div class="form-group">
+                            <label for="transaction-client">Client Name</label>
+                            <input type="text" class="form-control" id="transaction-client" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-amount">Amount</label>
+                            <input type="number" class="form-control" id="transaction-amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-type">Transaction Type</label>
+                            <select class="form-control" id="transaction-type">
+                                <option value="deposit">Deposit</option>
+                                <option value="withdraw">Withdraw</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <h4>Transfer</h4>
+                    <form id="transfer-form">
+                        <div class="form-group">
+                            <label for="transfer-from">From Client</label>
+                            <input type="text" class="form-control" id="transfer-from" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transfer-to">To Client</label>
+                            <input type="text" class="form-control" id="transfer-to" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transfer-amount">Amount</label>
+                            <input type="number" class="form-control" id="transfer-amount" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Transfer</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h4>Clients List</h4>
+                    <pre id="clients-list"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
