@@ -24,11 +24,11 @@ export class Bank {
         return this.clients.reduce((total, client) => total + client.balance, 0);
     }
 
-    transfer(fromClientName, toClientName, amount) {
+    transfer(fromClientName, toClientName, amount, curency) {
         const fromClient = this.findClient(fromClientName);
         const toClient = this.findClient(toClientName);
         if (fromClient && toClient) {
-            fromClient.transferTo(amount, toClient);
+            fromClient.transferTo(amount, curency, toClient);
         } else {
             console.log('One or both clients not found.');
         }

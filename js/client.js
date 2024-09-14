@@ -1,38 +1,32 @@
+import { Address } from './address.js';
+import { Money } from './money.js';
+
 export class Client {
-    constructor(name, balance = 0) {
+    constructor(name, address, money) {
         this.name = name;
-        this.balance = balance;
+        this.balance = money
+        this.address = address
     }
 
-    deposit(amount) {
-        if (amount > 0) {
-            this.balance += amount;
-            console.log(`${amount} added to ${this.name}'s account.`);
-        } else {
-            console.log('Amount must be positive.');
+    deposit(amount, currency) {
+        this.balance.deposit(amount, currency)
+    }
+
+    withdraw(amount, currency) {
+        this.balance.withdraw(amount, currency)
+    }
+
+    transferTo(amount, currency, recipient) {
+        if(this.balance.money[currency] >= amount){
+            this.withdraw(amount, currency)
+            recipient.deposit(amount, currency);
         }
-    }
-
-    withdraw(amount) {
-        if (amount > 0 && amount <= this.balance) {
-            this.balance -= amount;
-            console.log(`${amount} withdrawn from ${this.name}'s account.`);
-        } else {
-            console.log('Insufficient funds or invalid amount.');
-        }
-    }
-
-    transferTo(amount, recipient) {
-        if (amount > 0 && amount <= this.balance) {
-            this.balance -= amount;
-            recipient.deposit(amount);
-            console.log(`${amount} transferred from ${this.name} to ${recipient.name}.`);
-        } else {
-            console.log('Insufficient funds or invalid amount.');
+        else{
+            console.log('не хватает денег')
         }
     }
 
     getAccountInfo() {
-        return `Name: ${this.name}, Balance: ${this.balance}`;
+        return `Name: ${this.name}, Balance: ${this.balance.returnBalanceStr()}, Address: ${this.address.listAddress()}`;
     }
 }
