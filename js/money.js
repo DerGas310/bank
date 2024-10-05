@@ -4,24 +4,31 @@
     }
   
   validation(amount, currency){
-    if(amount < 0 || currency !== 'RUB' && currency !== 'USD'){       //всегда ошибка из-за currency
+    if(amount < 0 || currency !== 'RUB' && currency !== 'USD'){      
       console.log("ошибка")
+      return null
+    }
+    else{
+      return 1
     }
   }
   
   deposit(amount, currency){
-    this.validation(amount, currency)
-    this.money[currency] += amount
+    if(this.validation(amount, currency)){
+      this.money[currency] += amount
     return this.money
+    }
   }
 
   withdraw(amount, currency){
-    this.validation(amount, currency)
-    if(amount <= this.money[currency]){
-      this.money[currency] -= amount
+    if(this.validation(amount, currency)){
+      if(amount <= this.money[currency]){
+        this.money[currency] -= amount
+      }
+      return this.money
     }
-    return this.money
   }
+    
 
   returnBalanceStr(){
     return `RUB: ${this.money.RUB} USD: ${this.money.USD}`
